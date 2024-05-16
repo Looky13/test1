@@ -1,0 +1,101 @@
+h1 {
+    text-shadow: 2px 2px 4px rgba(137, 162, 170, 0.8); 
+    font-size: 800%;
+    animation: floatUpDown 3s infinite alternate;
+}
+
+h1::after {
+    content: '2';
+    animation: animate 6s linear infinite; 
+}
+
+@keyframes animate {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes floatUpDown1 {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+body {
+    font-family: 'Dont Walk Run', sans-serif;
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: aliceblue;
+    background-position: center;
+    height: 80vh;
+    margin: 0;
+}
+
+.button-start {
+    animation: floatUpDown1 3s infinite, animate 3s linear infinite; ;
+    font-family: 'Dont Walk Run', sans-serif;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: 2px solid black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+button:hover{
+    border-color: aliceblue;
+}
+
+.button-href {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
+
+.button-instrukcja {
+    font-family: 'Dont Walk Run', sans-serif;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: 2px solid black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.button-instrukcja:hover {
+    border-color: aliceblue;
+}
