@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style2.css">
+    <audio src="morse.wav"></audio>
+    <link href="https://fonts.cdnfonts.com/css/dont-walk-run" rel="stylesheet">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sprawdź tekst</title>
+</head>
+<body>
+    <h2>Podaj haslo:</h2>
+    <form id="tekstForm">
+        <textarea id="tekst" name="tekst" rows="1" cols="11"></textarea><br>
+        <input type="submit" value="Enter">
+    </form>
+    <div id="result"></div>
+    <script>
+        document.getElementById('tekstForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const wprowadzonyTekst = document.getElementById('tekst').value.trim();
+
+            fetch('tekst.txt')
+                .then(response => response.text())
+                .then(zawartoscPliku => {
+                    if (wprowadzonyTekst === zawartoscPliku.trim()) {
+                        fetch('rezultat.txt')
+                            .then(response => {
+                                if (response.ok) {
+                                    return response.text();
+                                } else {
+                                    throw new Error('Plik rezultat.txt nie istnieje.');
+                                }
+                            })
+                            .then(data => {
+                                const blob = new Blob([data], { type: 'text/plain' });
+                                const url = window.URL.createObjectURL(blob);
+                                const a = document.createElement('a');
+                                a.style.display = 'none';
+                                a.href = url;
+                                a.download = 'rezultat.txt';
+                                document.body.appendChild(a);
+                                a.click();
+                                window.URL.revokeObjectURL(url);
+                            })
+                            .catch(error => {
+                                document.getElementById('result').textContent = error;
+                            });
+                    } else {
+                        document.getElementById('result').textContent = 'Nieprawidłowe haslo';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('result').textContent = 'Blad wczytywania pliku tekst.txt';
+                });
+        });
+    </script>
+</body>
+</html>
